@@ -27,5 +27,14 @@
     Finally, a recovery will fast forward time by 90 seconds, which would abort any in-progress client transactions with transaction_too_old error. During retry, these client transactions will find the new generation of transaction system and commit.
 
     ``commit_result_unknown`` error: If a recovery happened while a transaction is committing (i.e., a commit proxy has sent mutations to transaction logs). A client would have received commit_result_unknown, and then retried the transaction. It’s completely permissible for FDB to commit both the first attempt, and the second retry, as commit_result_unknown means the transaction may or may not have committed. This is why it’s strongly recommended that transactions should be idempotent, so that they handle commit_result_unknown correctly.
+  - Data Team
+    - Copysets: Reducing the Frequency of Data Loss in Cloud Storage
+    - The number of machines in each team is based on the replication mode; the total number of teams increases with the size of the cluster.
+    -  A failure of a StorageServer triggers DataDistributor to move data from teams containing the failed
+process to other healthy teams.
+    - 先修只剩 1 个副本的
+    - 再修只剩 2 个副本的
+    - 最后是 balancer
+
 
 
