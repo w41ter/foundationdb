@@ -231,8 +231,13 @@ if(NOT FDB_RELEASE)
   set(git_string ".${git_hash}")
 else()
   set(CPACK_RPM_PACKAGE_RELEASE 1)
-  set(package_version_postfix "-1")
+  if(FDB_VERSION_SUFFIX STREQUAL "")
+    set(package_version_postfix "-1")
+  else()
+    set(package_version_postfix "${FDB_VERSION_SUFFIX}")
+  endif()
 endif()
+message(STATUS "PACKAGE_VERSION_POSTFIX: ${package_version_postfix}")
 
 ################################################################################
 # Configuration for RPM
