@@ -231,7 +231,11 @@ if(NOT FDB_RELEASE)
   set(git_string ".${git_hash}")
 else()
   set(CPACK_RPM_PACKAGE_RELEASE 1)
-  set(package_version_postfix "-1")
+  if(CMAKE_VERSION_SUFFIX STREQUAL "")
+    set(package_version_postfix "-1")
+  else()
+    set(package_version_postfix "${CMAKE_VERSION_SUFFIX}")
+  endif()
 endif()
 
 ################################################################################
